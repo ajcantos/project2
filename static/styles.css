@@ -1,0 +1,76 @@
+html {
+  position: relative; /* For sticky footer */
+  min-height: 100%; /* For sticky footer */
+}
+
+body {
+  margin-bottom: 100px; /* For sticky footer */
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 150px;
+}
+
+/*a {
+  margin-right: 10px;
+}
+
+.myown-header-picture {
+  background-size: cover;
+  background-position: center bottom;
+  height: 400px;
+}
+
+.myown-form-signin-signup {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.myown-form-search {
+  width: 100%;
+  max-width: 600px;
+  padding: 15px;
+  margin: auto;
+}
+
+.myown-sticky-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+}
+
+@media (max-width: 575.98px) {
+  .myown-top-title {
+    padding-top: 250px;
+    padding-bottom: 50px;
+  }
+
+  .myown-top-title h1 {
+    font-size: 2.5rem;
+  }
+
+  .myown-top-title h2 {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .myown-top-title {
+    padding-top: 150px;
+    padding-bottom: 50px;
+  }
+
+  .myown-top-title h1 {
+    font-size: 4rem;
+  }
+
+  .myown-top-title h2 {
+    font-size: 2rem;
+  }
+}*/
