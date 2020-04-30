@@ -39,6 +39,29 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal to create new channel -->
+        <div class="modal fade" id="modalNewChannel" tabindex="-1" role="dialog" aria-labelledby="modalNewChannelTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalNewChannelTitle">Create new channel</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nameModalNewChannel" class="col-form-label">Please enter the name of the channel</label>
+                            <input type="text" class="form-control" name="nameModalNewChannel" id="nameModalNewChannel" placeholder="Channel name">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" id="acceptModalNewChannel" value="Accept">
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <!-- Flack header -->
         <header class="bg-light">
@@ -50,7 +73,7 @@
                     </div>
                     <!-- Flack header center -->
                     <div class="col-9">
-                        <h4>FLACK-HEADER-CENTER</h4>
+                        <h4 id="header-lateral-channel">No channel selected</h4>
                     </div>
                 </div>
             </div>
@@ -61,12 +84,72 @@
             <div class="container-fluid">
                 <div class="row" id="flack-body">
                     <!-- Flack lateral -->
-                    <div class="col-3">
-                        <h4>FLACK-LATERAL</h4>
+                    <div class="col-3 bg-light">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Channels
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body" id="channelList">
+                                        <div id="existingChannels">
+                                            <!-- Existing channels retrieved from the server -->
+                                            {% if channels %}
+                                                {% for channel in channels %}
+                                                <div>
+                                                    <i class="mr-3 fa fa-star"></i> <button id="{{ channel.name }}" class="btn btn-link channel" type="button">{{ channel.name }}</button>
+                                                </div>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                        <div id="newChannels">
+                                            <!-- New channels created with JS -->
+                                        </div>
+                                        <div>
+                                            <button id="openModalNewChannel" class="btn btn-link" type="button">Add new channel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            People
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        List of people
+                                    </div>
+                                </div>
+                                </div>
+                          </div>
                     </div>
                     <!-- Flack messages -->
                     <div class="col-9">
-                        <h4>FLACK-MESSAGES</h4>
+                        <div id="existingMessages">
+                            <!-- Existing messages retrieved from the server -->
+                        </div>
+                        <div id="newMessages">
+                            <!-- New messages created with JS -->
+                            <script id="message_template" type="text/x-handlebars-template">
+                                <div class="media pt-2">
+                                    <img src="{{ url_for('static', filename='Avatar1.png') }}" class="mr-3 mt-1" height="30px">
+                                    {% raw -%}
+                                    <div class="media-body">
+                                        <h5 class="my-0">{{ message_user }}</h5>
+                                            {{ message_text }}
+                                    </div>
+                                    {%- endraw %}
+                                </div>
+                            </script>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,7 +165,10 @@
                     </div>
                     <!-- Flack footer center -->
                     <div class="col-9">
-                        <h4>FLACK-FOOTER-CENTER</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="message" id="message" placeholder="Write your message here">
+                            <input type="submit" class="btn btn-primary" id="sendMessageButton" value="Send">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,6 +179,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         
+        <!-- Handlebars -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
         <!-- My own local JS -->
         <script src="{{ url_for('static', filename='index.js') }}"></script>
     </body>
